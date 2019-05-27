@@ -55,18 +55,6 @@ int encoding(int r,int w,int boatflag){//编码返回s为id
     s=8*r+w*2+boatflag;
     return s;
 }
-/*int decoding(int s,int *dataf){//解码返回一个数组地址之中是一个兔、狼、船标
-    int r,w,boatflag;
-    int data[3];
-    r=s/8;
-    w=(s%8)/2;
-    boatflag=s%2;
-    data[0]=r;
-    data[1]=w;
-    data[2]=boatflag;
-    dataf=data;
-    return 0;
-}*/
 int isSafe(int s)
 {
     int r,w,boltflag;
@@ -268,30 +256,23 @@ if(isSafe(nextStatus) && (visited[nextStatus]== -1))
         visited[nextStatus] = status;
         printf("in%d ",nextStatus);
     } 
-/*for(who = 1; who <= 8; who <<= 1)
-{
-    if(((status&0x08) != 0) == ((status&who) != 0))
-    {
-        nextStatus = status ^ (0x08 | who);
-         
-        if(isSafe(nextStatus) && (visited[nextStatus]== -1))
-        {
-            In_SeqQueue (Q , nextStatus);
-            visited[nextStatus] = status;
-            printf("in%d ",nextStatus);
-        } 
-    }
-  
-}*/
 }
 nextStatus = 0;
-printf("\nthe reverse rout:");  
+printf("\nthe reverse rout:\n");
+printf("0 0 0\n");  
 while(visited[nextStatus]!= -1)
    {
-      printf("%d  ",visited[nextStatus]);
-   	  nextStatus = visited[nextStatus];
-        
-   	  if(nextStatus == 0) exit(0);
+        if(visited[nextStatus]==0){
+            printf("start\n");
+            exit(0);
+        }
+        int temp_r,temp_w,temp_boatflag;
+        temp_r=visited[nextStatus]/8;
+        temp_w=(visited[nextStatus]%8)/2;
+        temp_boatflag=visited[nextStatus]%2;
+        printf("%d %d %d\n",temp_r,temp_w,temp_boatflag);
+        nextStatus = visited[nextStatus];
+        //if(nextStatus == 0) exit(0);
    	  	  
    }
    
