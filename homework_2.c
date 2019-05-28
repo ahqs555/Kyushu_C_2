@@ -204,7 +204,7 @@ int one_r_cro(int status){
     }
 }
 
-void farmerCrossing()
+void Crossing()
 {
 PSeqQueue Q;
 int visited[32],i,status,nextStatus,r,w,boatflag;
@@ -280,6 +280,6 @@ while(visited[nextStatus]!= -1)
 
 int main(void)
 {
- farmerCrossing();
+  Crossing();
   return 0;
 }
