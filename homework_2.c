@@ -3,12 +3,12 @@
 #define  MAXSIZE  32
 
 typedef  struct {
-  int   data[MAXSIZE];  /*队列的存储空间*/
-  int front, rear;  /*队头队尾指针*/
+  int   data[MAXSIZE];  
+  int front, rear;  
 }SeqQueue,*PSeqQueue;
 
 PSeqQueue  Init_SeqQueue( )
-{   /*初始化队列。返回值：新顺序队列指针，null表示失败*/
+{   //初期化queue
            PSeqQueue  Q;
            Q=(PSeqQueue)malloc(sizeof(SeqQueue));
            if (Q) {
@@ -19,7 +19,6 @@ PSeqQueue  Init_SeqQueue( )
 }
 
 int  Empty_SeqQueue(PSeqQueue Q)
-/*判空队列。返回值：1表示为空，0表示非空*/
  {   if (Q && Q->front==Q->rear)
         return (1);
      else
@@ -27,30 +26,30 @@ int  Empty_SeqQueue(PSeqQueue Q)
  }
 
  int   In_SeqQueue (PSeqQueue Q , int  x)
-     {    /*入队。返回值：1表示成功，－1表示队满溢出*/
+     {
           if ((Q->rear+1)%MAXSIZE==Q->front)
-         {    printf("队满");
-               return -1;   /*队满不能入队*/
+         {    printf("full");
+               return -1;   
          }
          else 
         {     Q->rear=(Q->rear+1) % MAXSIZE;
                Q->data[Q->rear]=x;
-               return 1;    /*入队完成*/
+               return 1;   
         }
      }
 int  Out_SeqQueue (PSeqQueue Q,int *x)
-           {   /*出队。返回值：1表示成功，－1表示队空,出队的元素保存到*x  */
+           {   
                  if (Empty_SeqQueue(Q)) {      
-                     printf("队空");
-                     return -1;   /*队空不能出队*/
+                     printf("empty");
+                     return -1;   
                 }
                 else
                 {  Q->front=(Q->front+1) % MAXSIZE;
                     *x=Q->data[Q->front];
-                     return 1;    /*出队完成*/
+                     return 1;    
                 }
            }
-int encoding(int r,int w,int boatflag){//编码返回s为id
+int encoding(int r,int w,int boatflag){//状態をidに
     int s;
     s=8*r+w*2+boatflag;
     return s;
